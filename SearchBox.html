@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="SearchBox.css">
+  <title>Search Box</title>
+</head>
+
+<style>
+  .content-table{
+    
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px ;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  }
+
+  html{
+        display: flex;
+        flex-flow: row nowrap;  
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        height:100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background:#eeeeee;
+    }
+    
+ body {
+    margin:50px 0; 
+    padding:0;
+    text-align:center;
+} 
+
+.inputbar{
+  height: auto;
+  padding: 10px;
+  width: 80%;
+}
+
+  .content-table thead tr{
+    background-color: #009879;
+    color: #ffff;
+    text-align: left;
+    font-weight: bold;
+  }
+
+.content-table th,
+.content-table td{
+  padding: 12px 15px;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #dddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid #009879;
+}
+
+.content-table tbody tr.active-row{
+  font-weight: bold;
+  color: #009879;
+}
+
+h2{
+  font-style: oblique;
+  font-size: 2em;
+}
+
+
+</style>
+
+<body>
+
+  <h2 class="mheading"> My Friends List</h2>
+  
+  <br>
+
+  <input class="inputbar"  type="text" id="myInput" placeholder="Name" onkeyup="searchfunc()">
+
+  <br>
+
+  <table class="content-table" id="mytabl">
+    <thead>
+      <tr>
+      <th>Name</th>
+      <th>Degree</th>
+      <th>Profession</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr class="active-row">
+        <td>Zeeshan</td>
+        <td>BSCS</td>
+        <td>Web Developer</td>
+      </tr>
+      <tr>
+        <td>Ali</td>
+        <td>MEDIA SCI</td>
+        <td>Photographer</td>
+      </tr>
+      <tr>
+        <td>Kumail</td>
+        <td>BBA</td>
+        <td>HR</td>
+      </tr>
+      <tr>
+        <td>Zohaib</td>
+        <td>MSC</td>
+        <td>Android Developer </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+   const searchfunc = () =>{
+
+    let inp =document.getElementById("myInput").value.toUpperCase();
+
+    let mytab=document.getElementById("mytabl");
+
+    let tr = mytab.getElementsByTagName("tr");
+    
+        for(var i=0; i<tr.length ; i++){
+         let td = tr[i].getElementsByTagName('td')[0];
+         
+         if(td){
+           let textvalue = td.textContent || td.innerHTML;
+           if(textvalue.toUpperCase().indexOf(inp) > -1){
+             tr[i].style.display ="";
+           }else{
+             tr[i].style.display = "none";
+           }
+         }
+         
+        }
+
+   }
+
+  </script>
+
+
+</body>
+
+</html>
